@@ -19,15 +19,20 @@
   };
 
   let num = 5;
+  const addPerson = (e) => {
+    const person = e.detail;
+    people = [person, ...people];
+    showModal = false;
+  };
 </script>
 
 <Modal isPromo={true} {showModal} on:click={toggleModal}>
-  <AddPersonForm />
+  <AddPersonForm on:addPerson={addPerson} />
   <!-- <div slot="title"><h3>Add a New Person</h3></div> -->
 </Modal>
 
 <main>
-  <button on:click|once={toggleModal}>Open modal</button>
+  <button on:click={toggleModal}>Open modal</button>
   {#each people as person (person.id)}
     <div>
       <h4>{person.name}</h4>
